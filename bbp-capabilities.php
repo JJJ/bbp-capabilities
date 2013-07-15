@@ -4,35 +4,36 @@
  * Plugin Name: bbPress Advanced Capabilities
  * Plugin URI:  http://bbpress.org
  * Description: Advanced capabilities editing for bbPress
- * Author:      The bbPress Community
- * Author URI:  http://bbpress.org
+ * Author:      johnjamesjacoby
+ * Author URI:  http://jjj.me
  * Version:     1.0
  * Text Domain: bbpac
- * Domain Path: /languages/
  */
 
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-// Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
-
+/**
+ * Display user capabilities functionality in bbPress templates
+ *
+ * @since bbpac 1.0
+ */
 function bbp_user_edit_capabilities_after_role() {
 ?>
 
 	<div>
-		<label for="bbp-default-caps"><?php _e( 'Reset', 'bbpress' ); ?></label>
+		<label for="bbp-default-caps"><?php _e( 'Reset', 'bbpac' ); ?></label>
 		<label>
 			<input class="checkbox" type="checkbox" id="bbp-default-caps" name="bbp-default-caps" tabindex="<?php bbp_tab_index(); ?>" />
-			<?php _e( 'Reset custom capabilities to match the forum role.', 'bbpress' ); ?>
+			<?php _e( 'Reset custom capabilities to match the forum role.', 'bbpac' ); ?>
 		</label>
 	</div>
 
 	<div>
-		<label for=""><?php _e( 'Forum Capabilities', 'bbpress' ); ?></label>
+		<label for=""><?php _e( 'Forum Capabilities', 'bbpac' ); ?></label>
 
 		<fieldset class="bbp-form capabilities">
-			<legend><?php _e( 'Forum Capabilities', 'bbpress' ); ?></legend>
+			<legend><?php _e( 'Forum Capabilities', 'bbpac' ); ?></legend>
 
 			<?php BBP_User_Capabilities::capability_details(); ?>
 
@@ -43,6 +44,12 @@ function bbp_user_edit_capabilities_after_role() {
 }
 add_action( 'bbp_user_edit_after_role', 'bbp_user_edit_capabilities_after_role' );
 
+/**
+ * Handle the saving of user capabilities
+ *
+ * @param int $user_id
+ * @return If no user ID passed
+ */
 function bbp_profile_update_capabilities( $user_id = 0 ) {
 
 	// Bail if no user ID was passed
@@ -63,7 +70,7 @@ add_action( 'bbp_profile_update', 'bbp_profile_update_capabilities', 99 );
 /**
  * Remove all bbPress capabilities for a given user
  *
- * @since bbPress (r4221)
+ * @since 1.0
  *
  * @param int $user_id
  * @return boolean True on success, false on failure
@@ -262,19 +269,19 @@ function bbp_capability_group_title( $group = '' ) {
 
 		switch( $group ) {
 			case 'primary' :
-				$retval = __( 'Primary capabilities', 'bbpress' );
+				$retval = __( 'Primary capabilities', 'bbpac' );
 				break;
 			case 'forums' :
-				$retval = __( 'Forum capabilities', 'bbpress' );
+				$retval = __( 'Forum capabilities', 'bbpac' );
 				break;
 			case 'topics' :
-				$retval = __( 'Topic capabilites', 'bbpress' );
+				$retval = __( 'Topic capabilites', 'bbpac' );
 				break;
 			case 'topic_tags' :
-				$retval = __( 'Topic tag capabilities', 'bbpress' );
+				$retval = __( 'Topic tag capabilities', 'bbpac' );
 				break;
 			case 'replies' :
-				$retval = __( 'Reply capabilities', 'bbpress' );
+				$retval = __( 'Reply capabilities', 'bbpac' );
 				break;
 		}
 
@@ -397,138 +404,138 @@ function bbp_capability_title( $capability = '' ) {
 
 			// Primary
 			case 'spectate' :
-				$retval = __( 'Spectate forum discussion', 'bbpress' );
+				$retval = __( 'Spectate forum discussion', 'bbpac' );
 				break;
 			case 'participate' :
-				$retval = __( 'Participate in forums', 'bbpress' );
+				$retval = __( 'Participate in forums', 'bbpac' );
 				break;
 			case 'moderate' :
-				$retval = __( 'Moderate entire forum', 'bbpress' );
+				$retval = __( 'Moderate entire forum', 'bbpac' );
 				break;
 			case 'throttle' :
-				$retval = __( 'Skip forum throttle check', 'bbpress' );
+				$retval = __( 'Skip forum throttle check', 'bbpac' );
 				break;
 			case 'view_trash' :
-				$retval = __( 'View items in forum trash', 'bbpress' );
+				$retval = __( 'View items in forum trash', 'bbpac' );
 				break;
 
 			// Forum caps
 			case 'read_forum' :
-				$retval = __( 'View forum', 'bbpress' );
+				$retval = __( 'View forum', 'bbpac' );
 				break;
 			case 'edit_forum' :
-				$retval = __( 'Edit forum', 'bbpress' );
+				$retval = __( 'Edit forum', 'bbpac' );
 				break;
 			case 'trash_forum' :
-				$retval = __( 'Trash forum', 'bbpress' );
+				$retval = __( 'Trash forum', 'bbpac' );
 				break;
 			case 'delete_forum' :
-				$retval = __( 'Delete forum', 'bbpress' );
+				$retval = __( 'Delete forum', 'bbpac' );
 				break;
 			case 'moderate_forum' :
-				$retval = __( 'Moderate forum', 'bbpress' );
+				$retval = __( 'Moderate forum', 'bbpac' );
 				break;
 			case 'publish_forums' :
-				$retval = __( 'Create forums', 'bbpress' );
+				$retval = __( 'Create forums', 'bbpac' );
 				break;
 			case 'edit_forums' :
-				$retval = __( 'Edit their own forums', 'bbpress' );
+				$retval = __( 'Edit their own forums', 'bbpac' );
 				break;
 			case 'edit_others_forums' :
-				$retval = __( 'Edit all forums', 'bbpress' );
+				$retval = __( 'Edit all forums', 'bbpac' );
 				break;
 			case 'delete_forums' :
-				$retval = __( 'Delete their own forums', 'bbpress' );
+				$retval = __( 'Delete their own forums', 'bbpac' );
 				break;
 			case 'delete_others_forums' :
-				$retval = __( 'Delete all forums', 'bbpress' );
+				$retval = __( 'Delete all forums', 'bbpac' );
 				break;
 			case 'read_private_forums' :
-				$retval = __( 'View private forums', 'bbpress' );
+				$retval = __( 'View private forums', 'bbpac' );
 				break;
 			case 'read_hidden_forums' :
-				$retval = __( 'View hidden forums', 'bbpress' );
+				$retval = __( 'View hidden forums', 'bbpac' );
 				break;
 
 			// Topic caps
 			case 'read_topic' :
-				$retval = __( 'View topic', 'bbpress' );
+				$retval = __( 'View topic', 'bbpac' );
 				break;
 			case 'edit_topic' :
-				$retval = __( 'Edit topic', 'bbpress' );
+				$retval = __( 'Edit topic', 'bbpac' );
 				break;
 			case 'trash_topic' :
-				$retval = __( 'Trash topic', 'bbpress' );
+				$retval = __( 'Trash topic', 'bbpac' );
 				break;
 			case 'moderate_topic' :
-				$retval = __( 'Moderate topic', 'bbpress' );
+				$retval = __( 'Moderate topic', 'bbpac' );
 				break;
 			case 'delete_topic' :
-				$retval = __( 'Delete topic', 'bbpress' );
+				$retval = __( 'Delete topic', 'bbpac' );
 				break;
 			case 'publish_topics' :
-				$retval = __( 'Create topics', 'bbpress' );
+				$retval = __( 'Create topics', 'bbpac' );
 				break;
 			case 'edit_topics' :
-				$retval = __( 'Edit their own topics', 'bbpress' );
+				$retval = __( 'Edit their own topics', 'bbpac' );
 				break;
 			case 'edit_others_topics' :
-				$retval = __( 'Edit others topics', 'bbpress' );
+				$retval = __( 'Edit others topics', 'bbpac' );
 				break;
 			case 'delete_topics' :
-				$retval = __( 'Delete own topics', 'bbpress' );
+				$retval = __( 'Delete own topics', 'bbpac' );
 				break;
 			case 'delete_others_topics' :
-				$retval = __( 'Delete others topics', 'bbpress' );
+				$retval = __( 'Delete others topics', 'bbpac' );
 				break;
 			case 'read_private_topics' :
-				$retval = __( 'View private topics', 'bbpress' );
+				$retval = __( 'View private topics', 'bbpac' );
 				break;
 
 			// Reply caps
 			case 'read_reply' :
-				$retval = __( 'Read reply', 'bbpress' );
+				$retval = __( 'Read reply', 'bbpac' );
 				break;
 			case 'edit_reply' :
-				$retval = __( 'Edit reply', 'bbpress' );
+				$retval = __( 'Edit reply', 'bbpac' );
 				break;
 			case 'trash_reply' :
-				$retval = __( 'Trash reply', 'bbpress' );
+				$retval = __( 'Trash reply', 'bbpac' );
 				break;
 			case 'delete_reply' :
-				$retval = __( 'Delete reply', 'bbpress' );
+				$retval = __( 'Delete reply', 'bbpac' );
 				break;
 			case 'publish_replies' :
-				$retval = __( 'Create replies', 'bbpress' );
+				$retval = __( 'Create replies', 'bbpac' );
 				break;
 			case 'edit_replies' :
-				$retval = __( 'Edit own replies', 'bbpress' );
+				$retval = __( 'Edit own replies', 'bbpac' );
 				break;
 			case 'edit_others_replies' :
-				$retval = __( 'Edit others replies', 'bbpress' );
+				$retval = __( 'Edit others replies', 'bbpac' );
 				break;
 			case 'delete_replies' :
-				$retval = __( 'Delete own replies', 'bbpress' );
+				$retval = __( 'Delete own replies', 'bbpac' );
 				break;
 			case 'delete_others_replies' :
-				$retval = __( 'Delete others replies', 'bbpress' );
+				$retval = __( 'Delete others replies', 'bbpac' );
 				break;
 			case 'read_private_replies' :
-				$retval = __( 'View private replies', 'bbpress' );
+				$retval = __( 'View private replies', 'bbpac' );
 				break;
 
 			// Topic tag caps
 			case 'manage_topic_tags' :
-				$retval = __( 'Remove tags from topics', 'bbpress' );
+				$retval = __( 'Remove tags from topics', 'bbpac' );
 				break;
 			case 'edit_topic_tags' :
-				$retval = __( 'Edit topic tags', 'bbpress' );
+				$retval = __( 'Edit topic tags', 'bbpac' );
 				break;
 			case 'delete_topic_tags' :
-				$retval = __( 'Delete topic tags', 'bbpress' );
+				$retval = __( 'Delete topic tags', 'bbpac' );
 				break;
 			case 'assign_topic_tags' :
-				$retval = __( 'Assign tags to topics', 'bbpress' );
+				$retval = __( 'Assign tags to topics', 'bbpac' );
 				break;
 		}
 
@@ -700,7 +707,7 @@ class BBP_User_Capabilities {
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th><?php _e( 'Capability Details:', 'bbpress' ); ?></th>
+					<th><?php _e( 'Capability Details:', 'bbpac' ); ?></th>
 					<td>
 						<?php BBP_User_Capabilities::capability_details( $profileuser ); ?>
 					</td>
@@ -736,11 +743,11 @@ class BBP_User_Capabilities {
 		<table class="bbp-user-access-control">
 			<thead>
 				<tr>
-					<th><?php _e( 'Description', 'bbpress' ); ?></th>
-					<th><?php _e( 'Permission',  'bbpress' ); ?></th>
-					<th><?php _e( 'Source',      'bbpress' ); ?></th>
-					<th class="bbp-capability-key"><?php _e( 'Key',       'bbpress' ); ?></th>
-					<th class="bbp-capability-action"><?php _e( 'Action', 'bbpress' ); ?></th>
+					<th><?php _e( 'Description', 'bbpac' ); ?></th>
+					<th><?php _e( 'Permission',  'bbpac' ); ?></th>
+					<th><?php _e( 'Source',      'bbpac' ); ?></th>
+					<th class="bbp-capability-key"><?php _e( 'Key',       'bbpac' ); ?></th>
+					<th class="bbp-capability-action"><?php _e( 'Action', 'bbpac' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -754,29 +761,29 @@ class BBP_User_Capabilities {
 
 						// Is user denied this capability?
 						if ( ! isset( $profileuser->allcaps[$capability] ) || ( false === $profileuser->allcaps[$capability] ) ) {
-							$user_has = __( 'Denied', 'bbpress' );
+							$user_has = __( 'Denied', 'bbpac' );
 							$class    = 'denied';
 
 							// Does the user not have this cap because of the role or user?
 							if ( ! in_array( $capability, array_keys( $role_caps ) ) ) {
-								$inherited       = __( 'Role', 'bbpress' );
+								$inherited       = __( 'Role', 'bbpac' );
 								$inherited_class = 'role';
 							} else {
-								$inherited       = __( 'User', 'bbpress' );
+								$inherited       = __( 'User', 'bbpac' );
 								$inherited_class = 'user';
 							}
 
 						// Is user allowed this capability?
 						} elseif ( isset( $profileuser->allcaps[$capability] ) && ( true === $profileuser->allcaps[$capability] ) ) {
-							$user_has = __( 'Allowed', 'bbpress' );
+							$user_has = __( 'Allowed', 'bbpac' );
 							$class    = 'allowed';
 
 							// Does the user have this cap because of the role or user?
 							if ( in_array( $capability, array_keys( $role_caps ) ) ) {
-								$inherited       = __( 'Role', 'bbpress' );
+								$inherited       = __( 'Role', 'bbpac' );
 								$inherited_class = 'role';
 							} else {
-								$inherited       = __( 'User', 'bbpress' );
+								$inherited       = __( 'User', 'bbpac' );
 								$inherited_class = 'user';
 							}
 						}
@@ -799,11 +806,11 @@ class BBP_User_Capabilities {
 							<td class="bbp-capability-key"><?php echo esc_html( $capability ); ?></td>
 							<td class="bbp-capability-action">
 								<select id="_bbp_<?php echo esc_attr( $capability ); ?>" name="_bbp_<?php echo esc_attr( $capability ); ?>" tabindex="<?php bbp_tab_index(); ?>">
-									<option value=""><?php _e( 'Default', 'bbpress' ); ?></option>
+									<option value=""><?php _e( 'Default', 'bbpac' ); ?></option>
 									<?php if ( ( $class === 'denied' && 'role' === $inherited_class ) || ( $changed_allow ) ) : ?>
-										<option value="yes" <?php selected( $changed_allow ); ?>><?php _e( 'Allow', 'bbpress' ); ?></option>
+										<option value="yes" <?php selected( $changed_allow ); ?>><?php _e( 'Allow', 'bbpac' ); ?></option>
 									<?php elseif ( ( $class === 'allowed' && 'role' === $inherited_class ) || ( $changed_deny ) ) : ?>
-										<option value="no"  <?php selected( $changed_deny  ); ?>><?php _e( 'Deny',  'bbpress' ); ?></option>
+										<option value="no"  <?php selected( $changed_deny  ); ?>><?php _e( 'Deny',  'bbpac' ); ?></option>
 									<?php endif; ?>
 								</select>
 							</td>
@@ -816,7 +823,7 @@ class BBP_User_Capabilities {
 			<tfoot>
 				<tr class="bbp-default-caps-wrapper">
 					<th colspan="5">
-						<input type="submit" name="bbp-default-caps" class="button" value="<?php esc_attr_e( 'Reset to Default', 'bbpress' ); ?>"/>
+						<input type="submit" name="bbp-default-caps" class="button" value="<?php esc_attr_e( 'Reset to Default', 'bbpac' ); ?>"/>
 					</th>
 				</tr>
 			</tfoot>
