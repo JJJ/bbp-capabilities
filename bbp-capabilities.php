@@ -543,7 +543,6 @@ function bbp_capability_title( $capability = '' ) {
 	}
 
 /**
-/**
  * Loads bbPress users admin area
  *
  * @package bbPress
@@ -610,7 +609,7 @@ class BBP_User_Capabilities {
 	public function table_css() {
 
 		// Non admin action
-		if ( bbp_is_single_user_edit() || is_admin() ) : ?>
+		if ( function_exists ('is_bbpress') && bbp_is_single_user_edit() || is_admin() ) : ?>
 
 		<style type="text/css" media="screen">
 		/*<![CDATA[*/
